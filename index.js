@@ -1,79 +1,35 @@
-// console.log(fetch('https://media.istockphoto.com/id/1443562748/photo/cute-ginger-cat.jpg?s=612x612&w=0&k=20&c=vvM97wWz-hMj7DLzfpYRmY2VswTqcFEKkC437hxm3Cg=')
-
-// .then(response => {
-//     console.log(response)
-//         return response.blob()
-// })
-
-// .then(blob => {
-//     console.log(blob)
-//     document.querySelector('#myImage').src=URL.createObjectURL(blob)
-// })
-
-// .catch(error => {
-//     console.log(error)
-// })
-// )
-
-
-//id selector
-const content = document.querySelector('#content')
-
-//loading page
-window.addEventListener("load", () =>{
-    getUsers()
-})
-
-function getUsers(){
-    let html = ""
-    // fetch("http://localhost:1804/api/hello", { mode: "cors" })
-    fetch("https://https://bscs3a-crud-api.onrender.com/api/members",{mode: "cors"}) 
-      .then((response) => {
+/* (async () => {
+    try {
+        const response = await fetch('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxg8FQ25B6bWR2lkk9vUWtMgydfjzPV7l2og&s');
         console.log(response);
-        return response.json();
-      })
+        const blob = await response.blob();
+        console.log(blob)
+        document.querySelector('#myImage').src = URL.createObjectURL(blob);
+    } catch (err) {
+        console.log(err)
+    }
+})()
+ */// id selector
+ const content = document.querySelector("#content");
 
-      .then((data) => {
-        console.log(data);
-        data.forEach((element) => {
-          html += `<li>${element.first_name} ${element.last_name}</li>`;
-        });
-        content.innerHTML = html;
-      })
-
-      .catch((error) => {
-        console.log(error);
-      });
-}
-
-
-
-// //id selector
-// const content=document.querySelector("#content")
-
-// //loading page
-// window.addEventListener("load", () =>{
-//     getUsers()
-// })
-
-// function getUsers(){
-//     let html=""
-
-//     fetch("http://localhost:1804/api/hello" , {mode: "cors"})
-//     .then((response) =>{
-//         console.log(response)
-//         return response.json()
-//     })
-//     .then((data)=>{
-//         console.log(data)
-//         data.forEach((element) =>{
-//             html += `<li>${element.first_name} ${element.last_name}</li>`
-//         })
-
-//         content.innerHTML = html
-//     })
-//     .catch((error) =>{
-//         console.log(error)
-//     })
-
-// }
+ // Loading page
+ window.addEventListener("load", () => {
+     getUsers();
+ });
+ 
+ async function getUsers() {
+     let html = "";
+     try {
+         const response = await fetch("https://bscs3a-crud-api.onrender.com/api/members", { mode: "cors" });
+         console.log(response);
+         const data = await response.json();
+         console.log(data);
+         data.forEach((element) => {
+             html += `<li>${element.first_name} ${element.last_name}</li>`;
+         });
+         content.innerHTML = html;
+     } catch (error) {
+         console.log(error);
+     }
+ }
+ 
